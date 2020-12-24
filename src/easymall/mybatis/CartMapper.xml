@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 修改购物车商品数量 -->
 	<update id="updateBuyNum" parameterType="easymall.po.Cart">
-		update cart set num=#{num} where username=#{username} and cartID=#{cartID}
+		update cart set num=#{num} where cartID=#{cartID}
 	</update>
 	
 	<!-- 删除购物车中的商品 -->
@@ -36,8 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 根据cartID查找购物车 -->
 	<select id="findByCartID" resultType="easymall.pojo.MyCart" parameterType="Integer">
-		select cartID,pid,num,name,price,imgurl from cart,products
-			where cart.pid=products.id and cartID=#{cartID}
+		select cartID,pid,num,name,price,imgurl from cart,products where cart.pid=products.id and cartID=#{cartID}
 	</select>
 	
 </mapper>

@@ -43,7 +43,7 @@ public class CartController extends BaseController {
 	}
 	
 	@RequestMapping("/updateBuyNum")
-	public void updateBuyNum(Integer cartID, Integer buyNum, HttpSession session) {
+	public void updateBuyNum(Integer cartID, Integer buyNum) {
 		Cart newcart = new Cart();
 		newcart.setCartID(cartID);
 		newcart.setNum(buyNum);

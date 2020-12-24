@@ -96,7 +96,7 @@
 			$("input:checked").each(function(){
 				if($(this).attr("class") != "allC"){	
 					var cartID = $(this).attr("id"); 				
-					$.post("${ pageContext.request.contextPath }/cart/delCart",
+					$.post("${ pageContext.request.contextPath}/cart/delCart",
 							{"cartID":cartID});	
 					$(this).parents("ul").remove();
 				}
@@ -119,7 +119,7 @@
 			var cartID = $(this).attr("id");
 						
 			//2.利用ajax请求删除购物车中指定id的商品(-1后台会删除该商品)
-			$.post("${ pageContext.request.contextPath }/cart/delCart",{"cartID":cartID});				
+			$.post("${pageContext.request.contextPath}/cart/delCart",{"cartID":cartID});				
 					
 			//3.删除当前页面中的商品
 			$(this).parents("ul").remove();
@@ -133,20 +133,21 @@
 			$("#span_2").text(totalMoney);
 		});
 		
-		/* 去结算 */
-		$(".goto_order").click(function (){
-			var arr = [];	// 初始化一个数组arr，用于保存获得多选框的值
+		/*	去结算	*/
+		$(".goto_order").click(function(){			
+			var arr = [];//初始化一个数组arr，用于保存获得多选框的值。
 			$('input:checkbox:checked').each(function(){
-				if ($(this).attr("class") != "allc") {
+				if($(this).attr("class") != "allC"){
 					arr.push($(this).attr('id'));
 				}
 			});
-			var cartIDs = arr.toString();
-			// 使用ajax进行跳转，并带参数
-			$.post("${ pageContext.request.contextPath }/order/order_add",{"cartIds":cartIds},function(){
-				window.location="${pageContext.request.contextPath}/order/order_add?cartIds="+cartIds;
-			};
+			var cartIds=arr.toString();
+			//使用Ajax进行跳转，并带参数
+		$.post("${ pageContext.request.contextPath }/order/order_add",{"cartIds":cartIds},function(){
+			window.location="${pageContext.request.contextPath}/order/order_add?cartIds="+cartIds;
+			});				
 		});
+
 		
 	});
 </script>			
@@ -175,7 +176,7 @@
 			<c:forEach items="${carts}" var="cart">
 				<ul class="prods">
 					<li>
-						<input type="checkbox" class="prodC" id="${cart.cartID} }"/> 
+						<input type="checkbox" class="prodC" id="${cart.cartID}"/> 
 					</li>
 					<li class="li_prod">
 						<img src="${pageContext.request.contextPath}${cart.imgurl}" width="90" height="90" class="prodimg" />

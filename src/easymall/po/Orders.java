@@ -8,7 +8,7 @@ public class Orders {
 	private Double money;
 	private String receiverinfo;
 	private Integer paystate;
-	private Timestamp ordertime ;
+	private Timestamp ordertime;
 	private Integer user_id;
 	
 	public Orders() {}

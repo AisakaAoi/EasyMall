@@ -27,7 +27,7 @@
 					<th width="200">总价</th>
 				</tr>
 				<c:set var="sum" value="0" />
-				<c:forEach items="${carts} var="cart">
+				<c:forEach items="${carts}" var="cart">
 					<tr>
 						<td><img src="${pageContext.request.contextPath}${cart.imgurl}" 
 						width="90" height="90" class="prodimg" /></td>
