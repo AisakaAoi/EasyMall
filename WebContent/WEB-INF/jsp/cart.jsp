@@ -29,7 +29,7 @@
 			//>>获取商品的id和购买数量(newBuyNum)
 			var cartID = $buyNumInp.attr("id");
 			//>>发送ajax请求
-			$.post("${ pageContext.request.contextPath }/cart/updateBuyNum", {
+			$.post("${pageContext.request.contextPath}/cart/updateBuyNum", {
 				"cartID" : cartID,
 				"buyNum" : newBuyNum
 			});
@@ -49,11 +49,30 @@
 
 			//4.计算购物车所有商品的总价
 			var totalMoney = 0;
-			$(".sum_price").each(function() {
-				totalMoney += parseFloat($(this).text());
+			$('input:checkbox:checked').each(function(){
+				if($(this).attr("class") != "allC"){
+					$(".sum_price").each(function() {
+						totalMoney += parseFloat($(this).text());
+					});
+				}
 			});
 
 			//设置所有商品的总价
+			$("#span_2").text(totalMoney);
+		}
+		
+		function countTotalMoney() {
+			// 计算购物车所有商品的总价
+			var totalMoney = 0;
+			$('input:checkbox:checked').each(function(){
+				if($(this).attr("class") != "allC"){
+					$(".sum_price").each(function() {
+						totalMoney += parseFloat($(this).text());
+					});
+				}
+			});
+
+			// 设置所有商品的总价
 			$("#span_2").text(totalMoney);
 		}
 
@@ -74,7 +93,7 @@
 			var cartID = $buyNumInp.attr("id");
 			
 			//>>发送ajax请求
-			$.post("${ pageContext.request.contextPath }/cart/updateBuyNum", {
+			$.post("${pageContext.request.contextPath}/cart/updateBuyNum", {
 				"cartID" : cartID,
 				"buyNum" : newBuyNum
 			});
@@ -85,7 +104,9 @@
 
 		/* 设置全选和全不选 */
 		$(".allC").click(function() {
+			$(".allC").attr("checked", $(this).attr("checked"));
 			$(".prodC").attr("checked", $(this).attr("checked"));
+			
 		});
 		
 		/*
@@ -102,12 +123,7 @@
 				}
 			});
 			//2.重新计算购物车中商品的总价
-			var totalMoney = 0;
-			$(".sum_price").each(function(){
-						totalMoney += parseFloat($(this).text());
-			});
-			//3.设置所有商品的总价
-			$("#span_2").text(totalMoney);
+			countTotalMoney();
 		});
 		
 		/* 删除当前商品 
@@ -125,12 +141,7 @@
 			$(this).parents("ul").remove();
 					
 			//4.重新计算购物车中商品的总价
-			var totalMoney = 0;
-			$(".sum_price").each(function(){
-						totalMoney += parseFloat($(this).text());
-			});				
-			//设置所有商品的总价
-			$("#span_2").text(totalMoney);
+			countTotalMoney();
 		});
 		
 		/*	去结算	*/
@@ -143,12 +154,11 @@
 			});
 			var cartIds=arr.toString();
 			//使用Ajax进行跳转，并带参数
-		$.post("${ pageContext.request.contextPath }/order/order_add",{"cartIds":cartIds},function(){
-			window.location="${pageContext.request.contextPath}/order/order_add?cartIds="+cartIds;
-			});				
+			$.post("${ pageContext.request.contextPath }/order/order_add",{"cartIds":cartIds},function(){
+				window.location="${pageContext.request.contextPath}/order/order_add?cartIds="+cartIds;
+			});
 		});
 
-		
 	});
 </script>			
 </head>
@@ -192,7 +202,6 @@
 					<li class="sum_price">${cart.price * cart.num}</li>
 					<li><a id="${cart.cartID}" class="delProd" href="javascript:void(0)">删除</a></li>
 				</ul>
-				<c:set var="sum" value="${sum + cart.price * cart.num}" />
 			</c:forEach>
 			<!-- 总计条 -->
 			<div id="total">

@@ -9,4 +9,6 @@ public interface OrderService {
 	public void addOrder(String cartIds, Orders myOrder);
 	public List<Orders> findOrderByUserId(Integer user_id);
 	public List<OrderItem> orderitem(String order_id);
+	public void delorder(String id);
+	public void payorder(String id);
 }

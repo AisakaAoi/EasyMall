@@ -27,19 +27,22 @@
 					<br /> 
 					支付状态：
 					<c:if test="${orderInfo.order.paystate == 0}">
-						<font color="red">未支付</font>&nbsp;&nbsp;;
+						<font color="red">未支付</font>&nbsp;&nbsp;
+						<a href="${pageContext.request.contextPath}/order/delorder?id=${orderInfo.order.id}">
+							<img src="${pageContext.request.contextPath}/img/orderList/sc.jpg" width="69" height="19"/>
+						</a>
+						&nbsp;
+					 	<a href="${pageContext.request.contextPath}/order/payorder?id=${orderInfo.order.id}"> 
+						 	<img src="${pageContext.request.contextPath}/img/orderList/zx.jpg" width="69" height="19">
+						</a>
 					</c:if>
 					<c:if test="${orderInfo.order.paystate == 1}">
 						<font color="blue">已支付</font>&nbsp;&nbsp;
-					</c:if>
-						<a href="#">
-							<img src="${ pageContext.request.contextPath }/img/orderList/sc.jpg" width="69" height="19"/>
+						<a href="${pageContext.request.contextPath}/order/payorder?id=${orderInfo.order.id}"> 
+						确认收货
 						</a>
-						&nbsp;
-					 	<a href="#"> 
-						 	<img src="${ pageContext.request.contextPath }/img/orderList/zx.jpg" width="69" height="19">
-						</a>
-						<br /> 
+					</c:if>	
+					<br/>
 					所属用户：${user.username}
 					<br/> 
 					收货地址：${orderInfo.order.receiverinfo}

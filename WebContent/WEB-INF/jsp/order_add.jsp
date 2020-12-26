@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-	<link href="${ pageContext.request.contextPath }/css/addOrder.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/css/addOrder.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file = "_head.jsp" %>
@@ -16,7 +16,7 @@
 				<label for="textarea"></label>
 				<textarea name="receiverinfo" id="textarea" cols="35" rows="3">广东省佛山市南海区狮山镇狮山大学城华南师范大学南海校区</textarea>
 				<br> 支付方式：<input name="" type="radio" value="1" checked>&nbsp;在线支付
-				  	   <input type="hidden" name="cartIds" value="${cartIds }">
+				  	   <input type="hidden" name="cartIds" value="${cartIds}">
 			</div>
 			<table width="999" height="80" border="1" cellpadding="0" cellspacing="0" bordercolor="#d8d8d8">
 				<tr>

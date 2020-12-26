@@ -14,4 +14,8 @@ public interface OrderDao {
 	void addOrder(Orders myOrder);
 	// 显示订单
 	List<Orders> findOrderByUserId(Integer user_id);
+	// 订单删除
+	void delorder(String id);
+	// 订单支付
+	void payorder(String id);
 }

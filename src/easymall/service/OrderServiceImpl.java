@@ -56,4 +56,15 @@ public class OrderServiceImpl implements OrderService {
 		return orderItemDao.orderitem(order_id);
 	}
 
+	@Override
+	public void delorder(String id) {
+		orderItemDao.delorderitem(id);
+		orderDao.delorder(id);
+	}
+
+	@Override
+	public void payorder(String id) {
+		orderDao.payorder(id);
+	}
+
 }

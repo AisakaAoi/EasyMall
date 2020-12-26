@@ -29,9 +29,10 @@ public class CartController extends BaseController {
 		if (_cart == null) {
 			cartService.addCart(cart);
 		} else {
+			cart.setCartID(_cart.getCartID());
 			cartService.updateCart(cart);
 		}
-		return "forward:/cart/showcart";
+		return "redirect:/cart/showcart";
 	}
 	
 	@RequestMapping("/showcart")

@@ -14,4 +14,6 @@ public interface OrderItemDao {
 	void addOrderItem(OrderItem orderItem);
 	// 显示订单 商品信息
 	List<OrderItem> orderitem(String order_id);
+	
+	void delorderitem(String id);
 }

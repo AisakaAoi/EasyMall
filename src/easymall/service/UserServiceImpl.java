@@ -26,9 +26,9 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
+	@Override
 	public int regist(User user) {
 		return userDao.regist(user);
 	}
-
 
 }

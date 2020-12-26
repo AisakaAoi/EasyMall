@@ -36,7 +36,7 @@ public class OrderController extends BaseController{
 	@Autowired
 	private ProductsService productsService;
 	
-	@RequestMapping("order_add")
+	@RequestMapping("/order_add")
 	public String order_add(String cartIds, Model model) {
 		// 1.将购物车中所有选中商品的cartID组合起来的字符串拆分为数组
 		String[] arrCartIds = cartIds.split(",");
@@ -65,7 +65,7 @@ public class OrderController extends BaseController{
 		return "forward:/order/showorder";
 	}
 	
-	@RequestMapping("showorder")
+	@RequestMapping("/showorder")
 	public String showorder(HttpSession session, Model model) {
 		// 1.获取当前登录用户
 		User user = (User)session.getAttribute("user");
@@ -101,4 +101,17 @@ public class OrderController extends BaseController{
 		}
 		return orderInfoList;
 	}
+	
+	@RequestMapping("/delorder")
+	public String delorder(String id, Model model) {
+		orderService.delorder(id);
+		return "redirect:/order/showorder";
+	}
+	
+	@RequestMapping("/payorder")
+	public String payorder(String id, Model model) {
+		orderService.payorder(id);
+		return "redirect:/order/showorder";
+	}
+	
 }

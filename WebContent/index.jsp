@@ -11,7 +11,7 @@
 	<jsp:include page="/WEB-INF/jsp/_head.jsp"/>
 		<div id="index">
 			<div id="line1">
-				<img src="${ pageContext.request.contextPath }/img/index/banner_big.jpg"/>
+				<img src="${pageContext.request.contextPath}/img/index/banner_big.jpg"/>
 			</div>
 			<div id="line2">
 				<img id="line2_1" src="${ pageContext.request.contextPath }/img/index/adv1.jpg"/>
