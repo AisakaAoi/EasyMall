@@ -45,6 +45,7 @@
 			</div>
 		</div>
 		<!-- 将头部(_foot.jsp)包含进来 -->
+	<jsp:include page="/WEB-INF/jsp/_map.jsp"/>
 	<jsp:include page="/WEB-INF/jsp/_foot.jsp"/>
 	+
 	</body>
