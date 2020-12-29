@@ -1,21 +1,17 @@
-package easymall.po;
+package easymall.pojo;
 
-public class Products {
-	
-	private String id;
+import org.springframework.web.multipart.MultipartFile;
+
+public class MyProducts {
+
+//	private String id;
 	private String name;
 	private Double price;
 	private Integer category;
 	private Integer pnum;
-	private String imgurl;
+	private MultipartFile imgurl;
 	private String description;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -40,10 +36,10 @@ public class Products {
 	public void setPnum(Integer pnum) {
 		this.pnum = pnum;
 	}
-	public String getImgurl() {
+	public MultipartFile getImgurl() {
 		return imgurl;
 	}
-	public void setImgurl(String imgurl) {
+	public void setImgurl(MultipartFile imgurl) {
 		this.imgurl = imgurl;
 	}
 	public String getDescription() {
@@ -52,5 +48,7 @@ public class Products {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
 	
 }

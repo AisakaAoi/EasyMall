@@ -4,9 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="easymall.dao.ProductsDao">
-	<select id="allcategorys" resultType="String">
-		select distinct(category) from products
+
+	<select id="allcategorys" resultType="easymall.po.Category">
+		select * from category
 	</select>
+	
 	<select id="prodlist" resultType="easymall.po.Products" parameterType="map">
 		select * from products where (price between #{minPrice} and #{maxPrice})
 		<if test="name!=null and name!=''">
@@ -16,10 +18,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and category=#{category}
 		</if>
 	</select>
+	
 	<select id="oneProduct" parameterType="String" resultType="easymall.po.Products">
 		select * from products where id=#{pid}
 	</select>
-	<select id="proclass" parameterType="String" resultType="easymall.po.Products">
+	
+	<select id="proclass" parameterType="Integer" resultType="easymall.po.Products">
 		select * from products where category=#{category}
 	</select>
+	
+	<insert id="save" parameterType="easymall.po.Products">
+		insert into products(id,name,price,category,pnum,imgurl,description) 
+			values(#{id},#{name},#{price},#{category},#{pnum},#{imgurl},#{description})
+	</insert>
+	
+	<select id="findByImgurl" parameterType="String" resultType="easymall.po.Products">
+		select * from products where imgurl=#{imgurl}
+	</select>
+	
 </mapper>

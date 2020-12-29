@@ -17,7 +17,7 @@
 					<option value="">不限</option>
 					<!-- 通过循环语句将所有商品类别显示在下拉列表中 -->
 					<c:forEach items="${categorys}" var="c">
-						<option value="${c}">${c}</option>
+						<option value="${c.id}">${c.name}</option>
 					</c:forEach>
 				</select>
 				<span class="input_span">商品价格区间：</span>

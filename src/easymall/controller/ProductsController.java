@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import easymall.po.Category;
 import easymall.po.Products;
 import easymall.service.ProductsService;
 
@@ -21,9 +22,9 @@ public class ProductsController {
 	private ProductsService productsService;
 	
 	@RequestMapping("/prodlist")
-	public String prodlist(String name, String category, String minprice, String maxprice, Model model) {
+	public String prodlist(String name, Integer category, String minprice, String maxprice, Model model) {
 		// 查找商品表中所有的商品类别
-		List<String> categorys = productsService.allcategorys();
+		List<Category> categorys = productsService.allcategorys();
 		model.addAttribute("categorys", categorys);
 		
 		// 为搜索条件设置默认值 并检查条件是否合法
@@ -69,7 +70,7 @@ public class ProductsController {
 	}
 	
 	@RequestMapping(value="/prodclass/{proclass}", method=RequestMethod.GET)
-	public String prodclass(@PathVariable String proclass, Model model) {
+	public String prodclass(@PathVariable Integer proclass, Model model) {
 		List<Products> products = productsService.proclass(proclass);
 		model.addAttribute("products", products);
 		// 返回到/WEB-INF/jsp/prod_info.jsp
