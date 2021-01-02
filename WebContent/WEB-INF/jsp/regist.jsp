@@ -1,8 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>欢迎注册EasyMall</title>
+		<base href="<%=basePath%>">
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/regist.css"/>
 		<script  type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-1.4.2.js"></script>
@@ -155,13 +160,33 @@
 						<span></span>
 					</td>
 				</tr>
+				<!-- ==========================邮箱start============================ -->
 				<tr>
 					<td class="tds">邮箱：</td>
 					<td>
-						<input type="text" name="email" value="${ param.email }"/>
-						<span></span>
+						<input type="text" name="email" id="email" placeholder="输入邮箱" "/>
+						<!-- <input type="text" name="email" value="${ param.email }"/> -->
+
 					</td>
+					<td class="tds" class="sub_td" colspan="1" >
+                		<button id="btnGetVcode" style="cursor:pointer">获取验证码</button>
+               		</td>
 				</tr>
+				<!-- 邮箱验证码： -->
+				<tr >
+	                <td class="tds">验证码：</td>
+	                <td>
+	                    <input type="text" name="vcode" id="vcode" placeholder="输入验证码"/>
+	                </td>
+	                <td  class="tds" class="sub_td" colspan="1" >
+            		<button type="button" id="btnVerify" style="cursor:pointer">验证</button>
+            		</td>
+	                <td id="message"></td>
+	                
+            	</tr>
+            	<!-- 引入jQuery -->
+		    	<script type="text/javascript" src="js/jsEmail.js"></script>
+            	<!-- ==========================邮箱end============================ -->
 				<tr>
 					<td class="tds">验证码：</td>
 					<td>
