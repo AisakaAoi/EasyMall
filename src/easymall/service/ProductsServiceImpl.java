@@ -112,4 +112,10 @@ public class ProductsServiceImpl implements ProductsService {
 		return "商品添加成功";
 	}
 
+	@Override
+	public void deleteproduct(String pid) {
+		// TODO Auto-generated method stub
+		productsDao.deleteproduct(pid);
+	}
+
 }

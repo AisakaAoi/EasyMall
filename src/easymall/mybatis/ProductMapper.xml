@@ -36,4 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from products where imgurl=#{imgurl}
 	</select>
 	
+		<!-- deleteproduct -->
+	<delete id="deleteproduct" parameterType="String">
+		delete from products where id=#{pid}
+	</delete>
+	
 </mapper>

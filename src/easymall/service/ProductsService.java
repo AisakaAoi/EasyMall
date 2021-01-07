@@ -20,4 +20,6 @@ public interface ProductsService {
 	public List<Products> proclass(Integer category);
 	// 添加商品
 	public String save(MyProducts myproducts, HttpServletRequest request);
+//	删除商品
+	public void deleteproduct(String pid);
 }

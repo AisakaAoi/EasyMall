@@ -56,4 +56,10 @@ public class ProductsControllerAdmin {
 		return "admin/prod_list";
 		
 	}
+//	商品管理  删除商品
+	@RequestMapping("/delprod")
+	public String delprod(String pid,Model model) {
+		productsService.deleteproduct(pid);
+		return "redirect:/admin/prodlist";
+	}
 }

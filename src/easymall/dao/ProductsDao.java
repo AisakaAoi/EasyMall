@@ -24,4 +24,6 @@ public interface ProductsDao {
 	public void save(Products products);
 	
 	public Object findByImgurl(String imgurl);
+//	根据pid删除商品
+	public void deleteproduct(String pid);
 }
