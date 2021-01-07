@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -52,50 +53,21 @@
 			<th>描述信息</th>
 			<th width="50px">操 作</th>
 		</tr>
-
 		<!-- 模版数据 -->
+		<c:forEach items="${products}" var="prod">
 		<tr>
 			<td>
-				<img width="120px" height="120px" src="../pics/1.jpg" alt="" >
-			</td>
-			<td>a7184417-5aa2-4de0-8237-a4c0f53972a1</td>
-			<td>三坑手机</td>
-			<td>电子数码</td>
-			<td>3000.0</td>
-			<td>
-				<input type="text" id="#" class="pnum" value="188"/>
-			</td>
-			<td>三坑手机, 专业坑人三十年, 从未被超越...!!!</td>
-			<td><a class="del" href="javascript:void(0)">删 除</a></td>
+				<img width="120px" height="120px" src="${pageContext.request.contextPath}${prod.imgurl}" alt="" >
+			</td>	
+			<td>${prod.id}</td>
+			<td>${prod.name}</td>
+			<td>${prod.category}</td>
+			<td>${prod.price}</td>
+			<td>${prod.pnum}</td>
+			<td>${prod.description}</td>
+			<td><a class="del" href="${pageContext.request.contextPath}/admin/delprod?pid=${prod.id}">删 除</a></td>
 		</tr>
-		<tr>
-			<td>
-				<img width="120px" height="120px" src="../pics/1.jpg" alt="" >
-			</td>
-			<td>a7184417-5aa2-4de0-8237-a4c0f53972a1</td>
-			<td>三坑手机</td>
-			<td>电子数码</td>
-			<td>3000.0</td>
-			<td>
-				<input type="text" id="#" class="pnum" value="188"/>
-			</td>
-			<td>三坑手机, 专业坑人三十年, 从未被超越...!!!</td>
-			<td><a class="del" href="javascript:void(0)">删 除</a></td>
-		</tr>
-		<tr>
-			<td>
-				<img width="120px" height="120px" src="../pics/1.jpg" alt="" >
-			</td>
-			<td>a7184417-5aa2-4de0-8237-a4c0f53972a1</td>
-			<td>三坑手机</td>
-			<td>电子数码</td>
-			<td>3000.0</td>
-			<td>
-				<input type="text" id="#" class="pnum" value="188"/>
-			</td>
-			<td>三坑手机, 专业坑人三十年, 从未被超越...!!!</td>
-			<td><a class="del" href="javascript:void(0)">删 除</a></td>
-		</tr>
+		</c:forEach>
 	</table>
 </body>
 </html>
