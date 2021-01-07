@@ -55,7 +55,10 @@
 			<td>${c.id}</td>
 			<td>${c.name}</td>
 			<td>${c.description}</td>
-			<td><a class="" href="${pageContext.request.contextPath}/admin/delcategory?id=${c.id}">删 除</a></td>
+			<td>
+				<a class="" href="${pageContext.request.contextPath}/admin/upcate?pid=${c.id}">修 改</a>
+				<a class="" href="${pageContext.request.contextPath}/admin/delcategory?id=${c.id}">删 除</a>
+			</td>
 		</tr>
 		</c:forEach>
 	</table>

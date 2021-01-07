@@ -66,6 +66,22 @@ public class ProductsControllerAdmin {
 		return "redirect:/admin/addprod";
 	}
 	
+//	修改商品
+	@RequestMapping("/update")
+	public String update(@Valid @ModelAttribute MyProducts myproducts, HttpServletRequest request, Model model,String pid) throws Exception {
+		String msg = productsService.update(pid,myproducts, request);
+		model.addAttribute("msg", msg);
+		return "redirect:/admin/prodlist";
+	}
+	
+//	修改商品类别
+	@RequestMapping("/updateCategory")
+	public String updateCategory(@Valid @ModelAttribute MyCategory mycategory, Model model,Integer pid) throws Exception {
+		String msg = productsService.updateCategory(pid,mycategory);
+		model.addAttribute("msg", msg);
+		return "redirect:/admin/categorylist";
+	}
+	
 //	商品管理  返回prod_list
 	@RequestMapping("/prodlist")
 	public String prodlist(Model model) {
@@ -87,6 +103,22 @@ public class ProductsControllerAdmin {
 	public String delprod(String pid,Model model) {
 		productsService.deleteproduct(pid);
 		return "redirect:/admin/prodlist";
+	}
+	
+	@RequestMapping("/upprod")
+	public String upprod(String pid,Model model) {
+		Products product = productsService.oneProduct(pid);
+		model.addAttribute("product", product);
+		List<Category> categorys = productsService.allcategorys();
+		model.addAttribute("categorys", categorys);
+		return "admin/update_prod";
+	}
+	
+	@RequestMapping("/upcate")
+	public String upcate(String pid,Model model) {
+		Category category = productsService.oneCategory(pid);
+		model.addAttribute("category", category);
+		return "admin/update_category";
 	}
 	
 //	商品类别管理 categorylist

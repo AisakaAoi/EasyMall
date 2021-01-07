@@ -65,7 +65,9 @@
 			<td>${prod.price}</td>
 			<td>${prod.pnum}</td>
 			<td>${prod.description}</td>
-			<td><a class="del" href="${pageContext.request.contextPath}/admin/delprod?pid=${prod.id}">删 除</a></td>
+			<td>
+			<a class="upp" href="${pageContext.request.contextPath}/admin/upprod?pid=${prod.id}">修 改</a>
+			<a class="del" href="${pageContext.request.contextPath}/admin/delprod?pid=${prod.id}">删 除</a></td>
 		</tr>
 		</c:forEach>
 	</table>

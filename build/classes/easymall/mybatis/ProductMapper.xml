@@ -22,6 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="oneProduct" parameterType="String" resultType="easymall.po.Products">
 		select * from products where id=#{pid}
 	</select>
+	<select id="oneCategory" parameterType="String" resultType="easymall.po.Category">
+		select * from category where id=#{pid}	
+	</select>
 	
 	<select id="proclass" parameterType="Integer" resultType="easymall.po.Products">
 		select * from products where category=#{category}
@@ -50,4 +53,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into category(id,name,description) 
 			values(#{id},#{name},#{description})
 	</insert>
+	<!-- 修改商品 -->
+	<update id="update" parameterType="easymall.po.Products">
+		update products set name=#{name}, price=#{price}, category=#{category}, pnum=#{pnum},
+		imgurl=#{imgurl}, description=#{description} where id=#{id}	
+	</update>
+	<!-- 修改商品类别 -->
+	<update id="updateCategory" parameterType="easymall.po.Category">
+		update category set name=#{name}, description=#{description} where id=#{id}
+	</update>
+	
 </mapper>
