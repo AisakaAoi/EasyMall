@@ -21,5 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      values(null,#{username},#{password},#{nickname},#{email})
 	</insert>
 	
-
+<!-- 后台登录功能，返回User类对象 -->
+	<select id="adminlogin" parameterType="easymall.po.Admin" resultType="easymall.po.Admin">
+		select * from admin where adminname = #{adminname} and adminpwd = #{adminpwd}
+	</select>
+	
 </mapper>

@@ -1,5 +1,6 @@
 package easymall.service;
 
+import easymall.po.Admin;
 import easymall.po.User;
 
 public interface UserService {
@@ -11,5 +12,7 @@ public interface UserService {
 	
 	//注册用户
 	public int regist(User user);
+//	后台登录
+	public Admin adminlogin(Admin admin);
 
 }

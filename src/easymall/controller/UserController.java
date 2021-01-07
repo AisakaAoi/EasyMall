@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import easymall.po.Admin;
 import easymall.po.User;
 import easymall.service.UserService;
 
@@ -31,6 +32,18 @@ public class UserController {
 		} else {
 			model.addAttribute("message", "用户名密码错误！");
 			return "login";
+		}
+	}
+//	adminlogin
+	@RequestMapping("/adminlogin")
+	public String adminlogin(Admin admin, HttpSession session, Model model) {
+		Admin admin1 = userService.adminlogin(admin);
+		if (admin1 != null) {
+			session.setAttribute("admin", admin1);
+			return "admin/manage";	// 跳转到后台主页
+		} else {
+			model.addAttribute("message", "用户名密码错误！");
+			return "admin/login";
 		}
 	}
 	

@@ -3,6 +3,7 @@ package easymall.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import easymall.po.Admin;
 import easymall.po.User;
 
 @Repository("userDao")
@@ -16,5 +17,8 @@ public interface UserDao {
 	
 	//注册用户
 	public int regist(User user);
+//	后台登录
+	public Admin adminlogin(Admin admin);
 
 }
+	
