@@ -1,16 +1,16 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 	<link href="${ pageContext.request.contextPath }/css/orderList.css" rel="stylesheet" type="text/css">
+	<title>订单管理</title>
 </head>
 <body>
-<%@ include file = "_head.jsp" %>
 	<div id="no_order_info">
 		<c:if test="${empty orderInfos}">
-			您还没有添加任何订单！
+			还没有任何客户添加任何订单！
 		</c:if>
 	</div>
 	<!-- 模版数据 -start -->
@@ -28,27 +28,19 @@
 					支付状态：
 					<c:if test="${orderInfo.order.paystate == 0}">
 						<font color="red">未支付</font>&nbsp;&nbsp;
-						<a href="${pageContext.request.contextPath}/order/delorder?id=${orderInfo.order.id}">
-							<img src="${pageContext.request.contextPath}/img/orderList/sc.jpg" width="69" height="19"/>
-						</a>
-						&nbsp;
-					 	<a href="${pageContext.request.contextPath}/order/payorder?id=${orderInfo.order.id}"> 
-						 	<img src="${pageContext.request.contextPath}/img/orderList/zx.jpg" width="69" height="19">
-						</a>
 					</c:if>
 					<c:if test="${orderInfo.order.paystate == 1}">
 						<font color="blue">已支付</font>&nbsp;&nbsp;
-						<a href="${pageContext.request.contextPath}/order/confirm?id=${orderInfo.order.id}"> 
-							确认收货
+						<c:if test="${orderInfo.order.sendstate == 0}">
+						<a href="${pageContext.request.contextPath}/admin/sendorder?id=${orderInfo.order.id}"> 
+						发货
 						</a>
-						<c:if test="${orderInfo.order.sendstate == 1}">
-							<c:if test="${orderInfo.order.confirm == 1}">
-							已收货
-							</a>
-						</c:if>
+						</c:if>	
 						
-					</c:if>	
-					</c:if>	
+					</c:if>
+					<c:if test="${orderInfo.order.sendstate == 1}">
+							已发货
+					</c:if>
 					<br/>
 					所属用户：${user.username}
 					<br/> 
@@ -83,6 +75,6 @@
 		</div>
 	</c:forEach>
 	<!-- 模版数据 -end -->
-	<%@ include file = "_foot.jsp" %>
+
 </body>
 </html>

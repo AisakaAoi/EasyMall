@@ -67,4 +67,23 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.payorder(id);
 	}
 
+//	查询orders表里的所有订单信息
+	@Override
+	public List<Orders> findOrder() {
+		// TODO Auto-generated method stub
+		return orderDao.findOrder();
+	}
+
+	@Override
+	public void sendorder(String id) {
+		// TODO Auto-generated method stub
+		orderDao.sendorder(id);
+	}
+
+	@Override
+	public void confirm(String id) {
+		orderDao.confirm(id);
+		
+	}
+
 }

@@ -60,7 +60,7 @@ public class OrderController extends BaseController{
 		Timestamp timeStamp = Timestamp.valueOf(time);
 		User user = (User)session.getAttribute("user");
 		String orderId = UUID.randomUUID().toString();
-		Orders myOrder = new Orders(orderId, null, receiverinfo, 0, timeStamp, user.getId());	// paystate默认是0，表示未支付
+		Orders myOrder = new Orders(orderId, null, receiverinfo, 0, timeStamp, user.getId(),0,0);	// paystate默认是0，表示未支付
 		orderService.addOrder(cartIds, myOrder);
 		return "forward:/order/showorder";
 	}
@@ -114,4 +114,10 @@ public class OrderController extends BaseController{
 		return "redirect:/order/showorder";
 	}
 	
+	@RequestMapping("/confirm")
+	public String confirm(String id, Model model) {
+		orderService.confirm(id);
+		return "redirect:/order/showorder";
+	}
+
 }
