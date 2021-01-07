@@ -9,9 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import easymall.dao.CartDao;
 import easymall.dao.OrderDao;
 import easymall.dao.OrderItemDao;
+import easymall.dao.ProductsDao;
+import easymall.dao.SalesDao;
 import easymall.po.OrderItem;
 import easymall.po.Orders;
+import easymall.po.Products;
 import easymall.pojo.MyCart;
+import easymall.pojo.MySales;
 
 @Service("orderService")
 @Transactional
@@ -23,11 +27,16 @@ public class OrderServiceImpl implements OrderService {
 	private OrderItemDao orderItemDao;
 	@Autowired
 	private OrderDao orderDao;
+	@Autowired
+	private ProductsDao productsDao; 
+	@Autowired
+	private SalesDao salesDao;
 	
 	@Override
 	public void addOrder(String cartIds, Orders myOrder) {
 		String[] arrCartIds = cartIds.split(",");
 		Double sum = 0.0;
+		int sum1=0;
 		for (String cartID : arrCartIds) {
 			Integer cid = Integer.parseInt(cartID);
 			MyCart mycart = cartDao.findByCartID(cid);
@@ -35,12 +44,19 @@ public class OrderServiceImpl implements OrderService {
 			int buynum = mycart.getNum();
 			Double price = mycart.getPrice();
 			sum += buynum * price;
+			sum1 += buynum * price;
 			OrderItem orderItem = new OrderItem();
 			orderItem.setOrder_id(myOrder.getId());
 			orderItem.setProduct_id(pid);
 			orderItem.setBuynum(buynum);
 			orderItemDao.addOrderItem(orderItem);
 			cartDao.delCart(cid);
+			Products products=productsDao.oneProduct(pid);
+			MySales mySales=new MySales();
+			mySales.setId(products.getCategory());
+			mySales.setSales_num(sum1);
+			mySales.setNum(buynum);
+			salesDao.sales(mySales);
 		}
 		myOrder.setMoney(sum);
 		orderDao.addOrder(myOrder);

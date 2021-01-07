@@ -33,7 +33,7 @@
 	<div id="line3">
 		<div id="content">
 			<ul>
-				<li><a href="">首页</a></li>
+				<li><a href="${pageContext.request.contextPath }/index.jsp">首页</a></li>
 				<li><a href="${pageContext.request.contextPath}/prodlist">全部商品</a></li>
 				<li><a href="${pageContext.request.contextPath}/prodclass/1">手机数码</a></li>
 				<li><a href="${pageContext.request.contextPath}/prodclass/2">日用百货</a></li>
