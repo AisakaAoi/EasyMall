@@ -22,4 +22,6 @@ public interface ProductsService {
 	public String save(MyProducts myproducts, HttpServletRequest request);
 //	删除商品
 	public void deleteproduct(String pid);
+//	删除商品类别
+	public void deletecategory(String id);
 }

@@ -62,4 +62,21 @@ public class ProductsControllerAdmin {
 		productsService.deleteproduct(pid);
 		return "redirect:/admin/prodlist";
 	}
+	
+//	商品类别管理 categorylist
+	@RequestMapping("/categorylist")
+	public String categorylist(Model model) {
+		// 查找所有的商品种类
+		List<Category> categorys = productsService.allcategorys();
+		// 查询结果暴露给前端
+		model.addAttribute("categorys", categorys);
+		return "admin/category_list";
+	}
+	
+//	商品类别管理  删除商品类别
+	@RequestMapping("/delcategory")
+	public String delcategory(String id,Model model) {
+		productsService.deletecategory(id);
+		return "redirect:/admin/categorylist";
+	}
 }

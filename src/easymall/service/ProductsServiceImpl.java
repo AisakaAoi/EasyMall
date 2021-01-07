@@ -118,4 +118,10 @@ public class ProductsServiceImpl implements ProductsService {
 		productsDao.deleteproduct(pid);
 	}
 
+	@Override
+	public void deletecategory(String id) {
+		// TODO Auto-generated method stub
+		productsDao.deletecategory(id);
+	}
+
 }
