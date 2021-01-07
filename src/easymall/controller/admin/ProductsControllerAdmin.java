@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import easymall.po.Category;
 import easymall.po.Products;
+import easymall.pojo.MyCategory;
 import easymall.pojo.MyProducts;
 import easymall.service.ProductsService;
 
@@ -24,7 +25,7 @@ public class ProductsControllerAdmin {
 
 	@Autowired
 	private ProductsService productsService;
-	
+//	添加商品
 	@RequestMapping("/addprod")
 	public String addprod(Model model) {
 		// 查找商品表中所有的商品列表
@@ -33,13 +34,29 @@ public class ProductsControllerAdmin {
 		model.addAttribute("myproducts", new MyProducts());
 		return "admin/add_prod";
 	}
-	
+//	添加商品类别
+	@RequestMapping("/addcategory")
+	public String addcategory(Model model) {
+		// 查找商品表中所有的商品列表
+		List<Category> categorys = productsService.allcategorys();
+		model.addAttribute("categorys", categorys);
+		return "admin/add_category";
+	}
+//	保存添加的商品
+	@RequestMapping("/savecategory")
+	public String savecategory(@Valid @ModelAttribute MyCategory mycategory, Model model) throws Exception {
+		String msg = productsService.savecategory(mycategory);
+		model.addAttribute("msg", msg);
+		return "redirect:/admin/addcategory";
+	}
+//	保存添加的商品类别
 	@RequestMapping("/save")
 	public String save(@Valid @ModelAttribute MyProducts myproducts, HttpServletRequest request, Model model) throws Exception {
 		String msg = productsService.save(myproducts, request);
 		model.addAttribute("msg", msg);
 		return "redirect:/admin/addprod";
 	}
+	
 //	商品管理  返回prod_list
 	@RequestMapping("/prodlist")
 	public String prodlist(Model model) {

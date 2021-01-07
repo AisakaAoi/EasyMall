@@ -16,11 +16,12 @@ import org.springframework.stereotype.Service;
 import easymall.dao.ProductsDao;
 import easymall.po.Category;
 import easymall.po.Products;
+import easymall.pojo.MyCategory;
 import easymall.pojo.MyProducts;
 
 @Service("productsService")
 public class ProductsServiceImpl implements ProductsService {
-	
+
 	@Autowired
 	private ProductsDao productsDao;
 
@@ -49,15 +50,15 @@ public class ProductsServiceImpl implements ProductsService {
 		// 1.判断后缀是否合法
 		// 获取图名称，后缀名称
 		String originName = myproducts.getImgurl().getOriginalFilename();
-		
+
 		// 截取后缀substring split (".png" ".jpg")
 		String extName = originName.substring(originName.lastIndexOf("."));
-		
-		if (!(extName.equalsIgnoreCase(".jpg") || extName.equalsIgnoreCase(".png") 
-			|| extName.equalsIgnoreCase(".gif"))) {	// 图片后缀不合法
+
+		if (!(extName.equalsIgnoreCase(".jpg") || extName.equalsIgnoreCase(".png")
+				|| extName.equalsIgnoreCase(".gif"))) { // 图片后缀不合法
 			return "图片后缀不合法！";
 		}
-		
+
 		// 判断木马（java的类判断是否是图片属性，也可以引入第三方jar包判断）
 		try {
 			BufferedImage bufImage = ImageIO.read(myproducts.getImgurl().getInputStream());
@@ -66,7 +67,7 @@ public class ProductsServiceImpl implements ProductsService {
 		} catch (Exception e) {
 			return "该文件不是图片！";
 		}
-		
+
 		// 2.创建upload开始的一个路径
 		// 生成多级路径
 		String imgurl = "";
@@ -122,6 +123,18 @@ public class ProductsServiceImpl implements ProductsService {
 	public void deletecategory(String id) {
 		// TODO Auto-generated method stub
 		productsDao.deletecategory(id);
+	}
+
+	@Override
+	public String savecategory(MyCategory mycategory) {
+		Random rd = new Random();
+		Integer id = rd.nextInt(100);
+		Category category = new Category();
+		category.setId(id);
+		category.setName(mycategory.getName());
+		category.setDescription(mycategory.getDescription());
+		productsDao.savecategory(category);
+		return "商品类别添加成功";
 	}
 
 }

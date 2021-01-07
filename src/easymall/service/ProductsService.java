@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import easymall.po.Category;
 import easymall.po.Products;
+import easymall.pojo.MyCategory;
 import easymall.pojo.MyProducts;
 
 public interface ProductsService {
@@ -24,4 +25,7 @@ public interface ProductsService {
 	public void deleteproduct(String pid);
 //	删除商品类别
 	public void deletecategory(String id);
+	
+//	添加商品类别
+	public String savecategory(MyCategory mycategory);
 }

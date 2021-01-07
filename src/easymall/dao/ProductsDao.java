@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import easymall.po.Category;
 import easymall.po.Products;
+import easymall.pojo.MyCategory;
 
 @Repository("productsDao")
 @Mapper
@@ -28,4 +29,6 @@ public interface ProductsDao {
 	public void deleteproduct(String pid);
 //	根据id删除商品类别
 	public void deletecategory(String id);
+//	添加商品类别
+	public void savecategory(Category category);
 }
