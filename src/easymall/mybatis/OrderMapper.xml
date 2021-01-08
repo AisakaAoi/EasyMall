@@ -25,4 +25,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update orders set paystate=1 where id=#{id}
 	</update>
 
+	<!--查询所有订单 findOrder -->
+	<select	id="findOrder" resultType="easymall.po.Orders">
+		select * from orders;
+	</select>
+	
+	<!-- 发货 sendorder -->
+	<update id="sendorder" parameterType="String">
+		update orders set sendstate=1 where id=#{id}
+	</update>
+	
+	<!--确认收货  confirm -->
+	<update id="confirm" parameterType="String">
+		update orders set confirm=1 where id=#{id}
+	</update>
 </mapper>

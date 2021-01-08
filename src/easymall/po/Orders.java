@@ -10,17 +10,36 @@ public class Orders {
 	private Integer paystate;
 	private Timestamp ordertime;
 	private Integer user_id;
+	private Integer sendstate;
+	private Integer confirm;
 	
+	public Integer getConfirm() {
+		return confirm;
+	}
+	public void setConfirm(Integer confirm) {
+		this.confirm = confirm;
+	}
+	public Integer getSendstate() {
+		return sendstate;
+	}
+	public void setSendstate(Integer sendstate) {
+		this.sendstate = sendstate;
+	}
 	public Orders() {}
-	public Orders(String id, Double money, String receiverinfo, Integer paystate, Timestamp ordertime, Integer user_id) {
+	
+	
+	public Orders(String id, Double money, String receiverinfo, Integer paystate, Timestamp ordertime, Integer user_id,
+			Integer sendstate,Integer confirm) {
+		super();
 		this.id = id;
 		this.money = money;
 		this.receiverinfo = receiverinfo;
 		this.paystate = paystate;
 		this.ordertime = ordertime;
 		this.user_id = user_id;
+		this.sendstate = sendstate;
+		this.confirm = confirm;
 	}
-	
 	public String getId() {
 		return id;
 	}

@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>商品管理</title>
+<title>管理商品类别</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <style type="text/css">
 	body{
@@ -41,33 +41,24 @@
 </script>
 </head>
 <body>
-	<h2>商品管理</h2>
+	<h2>商品类别管理</h2>
 	<table border="1">
-		<tr>
-			<th>商品图片</th>
-			<th width="200px">商品ID</th>
-			<th class="ths">商品名称</th>
-			<th class="ths">商品种类</th>
-			<th class="ths">商品单价</th>
-			<th class="ths">库存数量</th>
-			<th>描述信息</th>
+		<tr>			
+			<th width="200px">商品类别ID</th>
+			<th class="ths">商品类别</th>
+			<th class="ths">商品类别描述</th>
 			<th width="50px">操 作</th>
 		</tr>
 		<!-- 模版数据 -->
-		<c:forEach items="${products}" var="prod">
+		<c:forEach items="${categorys}" var="c">
 		<tr>
+			<td>${c.id}</td>
+			<td>${c.name}</td>
+			<td>${c.description}</td>
 			<td>
-				<img width="120px" height="120px" src="${pageContext.request.contextPath}${prod.imgurl}" alt="" >
-			</td>	
-			<td>${prod.id}</td>
-			<td>${prod.name}</td>
-			<td>${prod.category}</td>
-			<td>${prod.price}</td>
-			<td>${prod.pnum}</td>
-			<td>${prod.description}</td>
-			<td>
-			<a class="upp" href="${pageContext.request.contextPath}/admin/upprod?pid=${prod.id}">修 改</a>
-			<a class="del" href="${pageContext.request.contextPath}/admin/delprod?pid=${prod.id}">删 除</a></td>
+				<a class="" href="${pageContext.request.contextPath}/admin/upcate?pid=${c.id}">修 改</a>
+				<a class="" href="${pageContext.request.contextPath}/admin/delcategory?id=${c.id}">删 除</a>
+			</td>
 		</tr>
 		</c:forEach>
 	</table>
