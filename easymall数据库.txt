@@ -32,6 +32,21 @@ CREATE TABLE `admin` (
 
 insert  into `admin`(`id`,`adminname`,`adminpwd`) values (1,'admin','admin');
 
+DROP TABLE IF EXISTS `sales`;
+create table `sales` (
+	`id` double ,
+	`name` varchar (765),
+	`sales_num` double ,
+	`num` double 
+); 
+insert into `sales` (`id`, `name`, `sales_num`, `num`) values('1','手机数码','2000','2');
+insert into `sales` (`id`, `name`, `sales_num`, `num`) values('2','日用百货','30','6');
+insert into `sales` (`id`, `name`, `sales_num`, `num`) values('3','家用电器','40000','2');
+insert into `sales` (`id`, `name`, `sales_num`, `num`) values('4','图书杂志','780','1');
+insert into `sales` (`id`, `name`, `sales_num`, `num`) values('5','服装服饰','30000','3');
+insert into `sales` (`id`, `name`, `sales_num`, `num`) values('6','床上用品','1996','2');
+insert into `sales` (`id`, `name`, `sales_num`, `num`) values('7','汽车用品','0','0');
+
 /*Table structure for table `cart` */
 
 DROP TABLE IF EXISTS `cart`;
